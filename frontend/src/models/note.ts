@@ -1,7 +1,7 @@
 export interface Note {
-  _id: string;
-  titles: string;
-  text?: string;
-  createAt: string;
-  updatedAt: string;
+    _id: string,
+    title: string,
+    text?: string,
+    createdAt: string,
+    updatedAt: string,
 }
