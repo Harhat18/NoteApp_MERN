@@ -6,39 +6,51 @@ import { formatDate } from "../utils/formatDate";
 import { MdDelete } from "react-icons/md";
 
 interface NoteProps {
-  note: NoteModel;
-  onDeleteNoteClicked: (note: NoteModel) => void;
-  className?: string;
+    note: NoteModel,
+    onNoteClicked: (note: NoteModel) => void,
+    onDeleteNoteClicked: (note: NoteModel) => void,
+    className?: string,
 }
 
-const Note = ({ note, onDeleteNoteClicked, className }: NoteProps) => {
-  const { title, text, createdAt, updatedAt } = note;
+const Note = ({ note, onNoteClicked, onDeleteNoteClicked, className }: NoteProps) => {
+    const {
+        title,
+        text,
+        createdAt,
+        updatedAt
+    } = note;
 
-  let createdUpdatedText: string;
-  if (updatedAt > createdAt) {
-    createdUpdatedText = "Güncellenme: " + formatDate(updatedAt);
-  } else {
-    createdUpdatedText = "Eklenme : " + formatDate(createdAt);
-  }
+    let createdUpdatedText: string;
+    if (updatedAt > createdAt) {
+        createdUpdatedText = "Updated: " + formatDate(updatedAt);
+    } else {
+        createdUpdatedText = "Created: " + formatDate(createdAt);
+    }
 
-  return (
-    <Card className={`${styles.noteCard} ${className}`}>
-      <Card.Body className={styles.cardBody}>
-        <Card.Title className={styleUtils.flexCenter}>
-          {title}{" "}
-          <MdDelete
-            onClick={(e) => {
-              onDeleteNoteClicked(note);
-              e.stopPropagation();
-            }}
-            className="text muted ms-auto"
-          />
-        </Card.Title>
-        <Card.Text className={styles.cardText}>{text}</Card.Text>
-      </Card.Body>
-      <Card.Footer className="text-muted">{createdUpdatedText}</Card.Footer>
-    </Card>
-  );
-};
+    return (
+        <Card
+            className={`${styles.noteCard} ${className}`}
+            onClick={() => onNoteClicked(note)}>
+            <Card.Body className={styles.cardBody}>
+                <Card.Title className={styleUtils.flexCenter}>
+                    {title}
+                    <MdDelete
+                        className="text-muted ms-auto"
+                        onClick={(e) => {
+                            onDeleteNoteClicked(note);
+                            e.stopPropagation();
+                        }}
+                    />
+                </Card.Title>
+                <Card.Text className={styles.cardText}>
+                    {text}
+                </Card.Text>
+            </Card.Body>
+            <Card.Footer className="text-muted">
+                {createdUpdatedText}
+            </Card.Footer>
+        </Card>
+    )
+}
 
 export default Note;
