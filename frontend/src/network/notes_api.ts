@@ -50,7 +50,7 @@ export async function login(credentials: LoginCredentials): Promise<User> {
 }
 
 export async function logout() {
-  await fetchData("/api/users/logout", { method: "GET" });
+  await fetchData("/api/users/logout", { method: "POST" });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
