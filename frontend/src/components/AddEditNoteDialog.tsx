@@ -52,9 +52,9 @@ const AddEditNoteDialog = ({
         <Form id="addEditNoteForm" onSubmit={handleSubmit(onSubmit)}>
           <TextInputField
             name="title"
-            label="Title"
+            label="Başlık"
             type="text"
-            placeholder="title"
+            placeholder="Başlık Giriniz"
             register={register}
             registerOptions={{ required: "Required" }}
             error={errors.title}
@@ -62,20 +62,18 @@ const AddEditNoteDialog = ({
 
           <TextInputField
             name="text"
-            label="Text"
+            label="Not"
             as="textarea"
             rows={5}
-            placeholder="Text"
+            placeholder="Not Giriniz"
             register={register}
-            registerOptions={{ required: "Required" }}
-            error={errors.title}
           />
         </Form>
       </Modal.Body>
 
       <Modal.Footer>
         <Button type="submit" form="addEditNoteForm" disabled={isSubmitting}>
-          Save
+          Kaydet
         </Button>
       </Modal.Footer>
     </Modal>
