@@ -2,7 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { User } from "../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
-
+import { Link } from "react-router-dom";
 interface NavBarProps {
   loggedInUser: User | null;
   onSignUpClicked: () => void;
@@ -19,9 +19,16 @@ const NavBar = ({
   return (
     <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
       <Container>
-        <Navbar.Brand>NOTLARIM</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          NOTLARIM
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar">
+          <Nav>
+            <Nav.Link as={Link} to="/privacy">
+              Gizlilik Politikası
+            </Nav.Link>
+          </Nav>
           <Nav className="ms-auto">
             {loggedInUser ? (
               <NavBarLoggedInView
